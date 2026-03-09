@@ -1,0 +1,104 @@
+# Ruff configuration file
+# See https://docs.astral.sh/ruff/ for more information
+
+# Python version
+target-version = "py312"
+
+# Line length
+line-length = 150
+
+# Indentation
+indent-width = 4
+
+# Exclude specific files and directories
+exclude = [
+    ".git",
+    ".ruff_cache",
+    ".venv",
+    "__pycache__",
+    "build",
+    "dist",
+    "venv",
+    "*.egg-info",
+]
+
+[lint]
+# Enable specific rule sets
+select = [
+    "E",     # pycodestyle errors
+    "W",     # pycodestyle warnings
+    "F",     # Pyflakes
+    "I",     # isort
+    "N",     # pep8-naming
+    "UP",    # pyupgrade
+    "ANN",   # flake8-annotations (type hints)
+    "ASYNC", # flake8-async
+    "B",     # flake8-bugbear
+    "C4",    # flake8-comprehensions
+    "DTZ",   # flake8-datetimez
+    "T10",   # flake8-debugger
+    "EM",    # flake8-errmsg
+    "ISC",   # flake8-implicit-str-concat
+    "ICN",   # flake8-import-conventions
+    "PIE",   # flake8-pie
+    "PT",    # flake8-pytest-style
+    "Q",     # flake8-quotes
+    "RSE",   # flake8-raise
+    "RET",   # flake8-return
+    "SIM",   # flake8-simplify
+    "PL",    # Pylint
+    "TRY",   # tryceratops
+    "RUF",   # Ruff-specific rules
+]
+
+# Disable specific rules that might be too strict
+ignore = [
+    "ANN101",  # Missing type annotation for self in method
+    "ANN102",  # Missing type annotation for cls in classmethod
+    "ANN401",  # Dynamically typed expressions (Any) are disallowed
+    "PLR0913", # Too many arguments to function call
+    "PLR0912", # Too many branches
+    "PLR0915", # Too many statements
+    "TRY003",  # Avoid specifying long messages outside the exception class
+    "EM101",   # Exception must not use a string literal, assign to variable first
+    "EM102",   # Exception must not use an f-string literal, assign to variable first
+    "RUF001",  # Ambiguous Unicode characters in strings (Chinese characters are expected)
+    "RUF002",  # Ambiguous Unicode characters in docstrings (Chinese characters are expected)
+    "RUF003",  # Ambiguous Unicode characters in comments (Chinese characters are expected)
+    "ANN204",  # Don't have to provide return type on __init__
+    "B904",    # Don't need to raise exception from source
+    "TRY300",
+    "TRY301",
+    "RET504",  # For more explicit return value semantics
+    "SIM115",
+]
+
+# Allow autofix for all enabled rules
+fixable = ["ALL"]
+unfixable = []
+
+[lint.per-file-ignores]
+# Ignore specific rules in test files
+"tests/**/*.py" = ["ANN", "PLR2004"]
+# Ignore import rules in __init__.py files
+"__init__.py" = ["F401"]
+
+[lint.isort]
+known-first-party = ["src"]
+force-sort-within-sections = true
+split-on-trailing-comma = true
+
+[lint.flake8-quotes]
+docstring-quotes = "double"
+inline-quotes = "double"
+
+[lint.pydocstyle]
+convention = "google"
+
+[format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true
+docstring-code-line-length = 88

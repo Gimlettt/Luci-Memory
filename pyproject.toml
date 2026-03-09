@@ -1,0 +1,28 @@
+[project]
+name = "Luci-memory"
+version = "0.1.0"
+description = "Luci-memory block"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.34.0",
+]
+
+[tool.uv.sources]
+infra_py = { git = "https://github.com/OpenInterX-Products/xvu-infrastructure.git", tag = "v1.100.0", subdirectory = "libs/infra_py" }
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["ruff>=0.13.2"]
+
+[tool.hatch.build]
+packages = ["src"]
+
+[tool.ruff]
+# Use external ruff.toml configuration file
+extend = "ruff.toml"
